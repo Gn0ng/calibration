@@ -21,10 +21,11 @@ private:
 	int pixelDistance = 10;
 	int ksize = 3;
 	double sigma = 1.0;
-	int CHECKERBOARD[2]{ 10, 7 };
+	const int CHECKERBOARD[2]{ 10, 7 };
 	double quarter = 50;
 	const int windowSize = 5;
 	const int margin = 5;
+	int minPoints = CHECKERBOARD[0] * CHECKERBOARD[1];
 
 	cv::Mat calGaussianKernel(int size, double sigma);
 	cv::Mat conv(const cv::Mat& img, const cv::Mat& kernel);
@@ -33,5 +34,8 @@ private:
 	cv::Mat minDisCheck(const cv::Mat& result);
 	cv::Mat findChess(const cv::Mat& image, const cv::Mat& point);
 	cv::Mat numbering(const cv::Mat& image, const cv::Mat& point);
+	cv::Point2f findOrigin(const std::vector<cv::Point2f>& points, int rotate);
+	float distance(const cv::Point2f& p1, const cv::Point2f& p2);
+	bool isNext(const std::vector<cv::Point2f>& points, const cv::Point2f& p1);
 
 };
